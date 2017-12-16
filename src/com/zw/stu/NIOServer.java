@@ -33,7 +33,8 @@ public class NIOServer {
         System.out.println("服务端启动成功！");
         // 轮询访问selector
         while (true) {
-            //当注册的事件到达时，方法返回；否则,该方法会一直阻塞
+            // 当注册的事件到达时，方法返回
+            // 否则,该方法会一直阻塞
             selector.select();
             // 获得selector中选中的项的迭代器，选中的项为注册的事件
             Iterator ite = selector.selectedKeys().iterator();
@@ -73,7 +74,7 @@ public class NIOServer {
         ByteBuffer buffer = ByteBuffer.allocate(100);
         channel.read(buffer);
         byte[] data = buffer.array();
-        String msg = new String(data,"UTF-8").trim();
+        String msg = new String(data, "UTF-8").trim();
         System.out.println("服务端收到信息：" + msg);
         ByteBuffer outBuffer = ByteBuffer.wrap(msg.getBytes());
         channel.write(outBuffer);// 将消息回送给客户端
