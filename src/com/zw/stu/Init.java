@@ -1,21 +1,24 @@
 package com.zw.stu;
 
-public class Init {
+public class Init extends ThreadGroup {
+    public Init(String name) {
+        super(name);
+    }
+
+    @Override
+    public void uncaughtException(Thread t, Throwable e) {
+        TestException ee = (TestException) e;
+        ee.printSys();
+    }
+
     public static void main(String[] args) {
-        try {
-            Class.forName(Test.class.getName()).newInstance();
-
-            System.out.print("hello world");
-
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    throw new RuntimeException("我是一个异常");
-                }
-            }).start();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            e.printStackTrace();
-        }
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("RuntimeException ThreadID: " + Thread.currentThread().getId());
+                TestException e = new TestException();
+                throw e;
+            }
+        }).start();
     }
 }
