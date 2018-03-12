@@ -1,6 +1,37 @@
 package com.zw.stu.test;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.WeakHashMap;
+
 public class Test02 {
+    public static String str = "hello world";
+
+    public String name = "Tom";
+
+    public int age = 11;
+
+    public static int age11 = 11;
+
+    public static void main(String[] args) {
+        float i = 0;
+        float j = 1;
+
+        int iji = (int) j;
+
+        System.out.println(j / i);
+        Student res = test01();
+
+        System.out.println(3 | 4);
+
+        System.out.println(1.34567893245 > 1.345678932451);
+        System.out.println(String.valueOf(res.name));
+
+        Map<String,Integer> map = new HashMap<>(10);
+        map = new WeakHashMap<>();
+
+        System.out.println(1 << 30);
+    }
 
     public Test02() {
 
@@ -38,23 +69,49 @@ public class Test02 {
         return student;
     }
 
-    public void test02(int kk) {
+    public synchronized void test03() {
         int i = 0;
         int j = 1;
-        long jj = 1;
-        for (int n = 0; n < 10; n++) {
-            System.out.println();
+        int k = i + j;
+        System.out.println(k);
+    }
+
+    public final Object object = new Object();
+
+    public void test04() {
+        synchronized (object) {
+            Student student = new Student();
+            int[] arr = new int[10];
+            int i = 0;
+            int j = 1;
+            short iji = (short) i;
+            boolean b = i > j;
+            int n = age11;
+            int k = i + j;
+            int kk = i / j;
+            System.out.println(k);
+        }
+
+        return;
+    }
+
+    public void test05() {
+        synchronized (object) {
+            int i = 0;
+            int j = 1;
         }
     }
 
-    public static void main(String[] args) {
+    public int test06() {
+        // Class clazz = Test02.class;
 
-        float i = 0;
-        float j = 1;
-        System.out.println(j / i);
-        Student res = test01();
+        for (int i = 0; i < 100; i++) {
 
-        System.out.println(1.34567893245 > 1.345678932451);
-        System.out.println(String.valueOf(res.name));
+        }
+        test05();
+
+        int j = 22;
+
+        return j;
     }
 }
